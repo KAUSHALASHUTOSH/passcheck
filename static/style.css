@@ -1,0 +1,118 @@
+/* Universal Box-Sizing for better layout control */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    padding-top: 70px;
+    background-size: 400% 400%;
+    overflow-x: hidden; /* Keep this to prevent horizontal scrollbar */
+    margin: 0; /* REMOVED DEFAULT BROWSER MARGIN */
+    padding: 0; /* REMOVED DEFAULT BROWSER PADDING */
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px; /* Maintain 24px padding on left and right */
+    position: fixed;
+    top: 0;
+    width: 100%; /* Should now correctly span 100% within the viewport */
+    left: 0; /* Explicitly set left to 0 to ensure it's at the very left edge */
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ffcc;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    /* You can use gap here instead of margin-left on 'a' for cleaner code if preferred: */
+    /* gap: 15px; */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    /* Fine-tune this margin-left again if needed, 10px is a good starting point */
+    margin-left: 10px;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 0;
+    white-space: nowrap;
+}
+
+.nav-links a:hover {
+    color: #00ffcc;
+}
+
+.container {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+input, button {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+button {
+    background-color: #00ffcc;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00cc99;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #ccc;
+    margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        padding: 15px 10px;
+        align-items: flex-start;
+    }
+    .logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .nav-links a {
+        margin: 8px 0;
+        padding: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Checker 🔐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">PassCheck 🔐</div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('analyze_page') }}">Analyze</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <!-- Removed About link to avoid error -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Password Strength Checker</h2>
+        <input type="text" id="password" placeholder="Enter your password">
+        <button onclick="checkPassword()">👁️ Check Strength</button>
+
+        <h3 id="verdict">Strength: </h3>
+
+        <details open>
+            <summary><b>Suggestions</b></summary>
+            <ul id="suggestions"></ul>
+        </details>
+
+        <details>
+            <summary><b>Last 5 Checked</b></summary>
+            <ul id="history"></ul>
+        </details>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            fetch("/check", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("verdict").innerText = "Strength: " + data.verdict;
+
+                const sug = document.getElementById("suggestions");
+                sug.innerHTML = "";
+                data.suggestions.forEach(s => {
+                    const li = document.createElement("li");
+                    li.innerText = s;
+                    sug.appendChild(li);
+                });
+
+                const hist = document.getElementById("history");
+                hist.innerHTML = "";
+                data.history.forEach(p => {
+                    const li = document.createElement("li");
+                    li.innerText = p;
+                    hist.appendChild(li);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
