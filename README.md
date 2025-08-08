@@ -60,17 +60,14 @@ README.md
 📸 Screenshots
 --------------
 
-[Insert screenshots of the application in action]
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7869adde-f2eb-4927-92c9-3af9e0899523" />
 
-📦 API Reference
-----------------
 
-[Insert API documentation or references]
 
 👤 Author
 --------
 
-[Your Name]
+[kaushalashutosh]
 
 📝 License
 ---------
